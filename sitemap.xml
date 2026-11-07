@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.movers4less.co.uk/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.movers4less.co.uk/services.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.movers4less.co.uk/areas.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.movers4less.co.uk/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.movers4less.co.uk/home-removals.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.movers4less.co.uk/small-moves.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.movers4less.co.uk/packing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.movers4less.co.uk/fragile-items.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.movers4less.co.uk/office-moves.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.movers4less.co.uk/pricing.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.movers4less.co.uk/estimate.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.movers4less.co.uk/guides.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.movers4less.co.uk/moving-checklist.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.movers4less.co.uk/packing-guide.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.movers4less.co.uk/declutter-guide.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.movers4less.co.uk/areas.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.movers4less.co.uk/how-it-works.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.movers4less.co.uk/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.movers4less.co.uk/faqs.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.movers4less.co.uk/quote.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.movers4less.co.uk/quote.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://www.movers4less.co.uk/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
