@@ -188,6 +188,13 @@ These are deliberately simple scenarios showing why the business must not set pr
 
 The table demonstrates that the lower end of each selling range is only viable for a straightforward, efficient job. If the real crew duration or vehicle hire cost rises, the price must rise. Do not accept a loss-making job simply to advertise a low “from” price.
 
+**Important distinction in this model:** the "allocated overhead" line is a provisional per-job allocation for planning. It is not the same as proving that all monthly fixed costs have been recovered. Keep two views for every pilot:
+1. **Job contribution:** net sales (excluding any VAT collected) less direct labour, vehicle hire, fuel, parking/road charges, materials, equipment hire and payment fees.
+2. **Fully loaded result:** job contribution less a consistent allocation of insurance, admin, marketing, accountant, software, cancellations, vehicle downtime, damage excesses and owner time.
+
+Do not deduct the same overhead twice. The table's current allocation is only a placeholder until monthly fixed costs and realistic billable utilisation are known. A daily van rental also means a short two-hour job may carry a full day's vehicle cost unless more than one job can be routed efficiently on the same day.
+
+
 Track actual time and cost after every pilot move. Reprice if the gross contribution does not cover fixed overhead, insurance, marketing, admin, cancellations, vehicle downtime, damage excesses and owner time.
 
 ## 8. Pricing rules and exclusions to settle before launch
