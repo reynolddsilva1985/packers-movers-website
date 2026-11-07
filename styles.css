@@ -386,3 +386,76 @@ img, svg { max-width: 100%; }
   .quote-aside h2 { font-size: 32px; }
   .site-footer .footer__links { grid-template-columns: 1fr; }
 }
+
+
+/* Movers4Less concept build: prominent status banner, price guide and estimator */
+.concept-banner { position: relative; z-index: 60; width: 100%; color: var(--ink); background: #f2dfc7; border-bottom: 1px solid #dfc39f; }
+.concept-banner__inner { width: min(var(--container), calc(100% - 40px)); min-height: 112px; margin: 0 auto; padding: 14px 0 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center; }
+.concept-banner__eyebrow { color: #8c5a2f; font-size: 9px; font-weight: 800; letter-spacing: .2em; }
+.concept-banner__inner strong { display: block; color: #4c2d16; font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 27px); font-weight: 800; letter-spacing: -.035em; line-height: 1.2; }
+.concept-banner__inner > span:last-child { color: #70543b; font-size: 12px; line-height: 1.45; }
+.site-header { top: 0; }
+.brand__mark { display: inline-flex; width: 42px; height: 42px; align-items: center; justify-content: center; color: white; background: var(--ink); border-radius: 12px; font-size: 10px; font-weight: 900; letter-spacing: -.04em; }
+.brand__wordmark { white-space: nowrap; }
+.nav { gap: clamp(8px, 1vw, 15px); font-size: 11px; }
+.nav__cta { gap: 10px; padding: 11px 12px; }
+.service-grid--three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.service-card { min-height: 260px; }
+.page-hero h1 { max-width: 850px; }
+.table-intro { max-width: 780px; }
+.concept-price-note { display:flex; gap:16px; align-items:flex-start; margin-bottom:34px; padding:20px 22px; background:#f3e9dc; border-left:4px solid var(--accent-deep); color:#72512e; font-size:13px; line-height:1.75; }
+.concept-price-note b { min-width:170px; color:#52371f; font-size:14px; }
+.table-wrap { width:100%; overflow-x:auto; margin:20px 0 12px; background:var(--white); border:1px solid var(--line); }
+.price-table { width:100%; border-collapse:collapse; min-width:650px; font-size:13px; text-align:left; }
+.price-table th { padding:15px 17px; color:#fff; background:var(--ink); font-size:10px; letter-spacing:.09em; text-transform:uppercase; }
+.price-table td { padding:14px 17px; border-top:1px solid var(--line); color:#596970; vertical-align:top; line-height:1.6; }
+.price-table td:first-child { color:var(--ink); font-weight:700; }
+.price-table td:nth-child(2) { color:#8d5b30; font-weight:800; white-space:nowrap; }
+.fine-print { margin:12px 0 24px; color:#7c8789; font-size:11px !important; line-height:1.75 !important; }
+.estimator-layout { display:grid; grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr); gap:30px; align-items:start; }
+.estimator-card { padding:32px; background:var(--white); border:1px solid var(--line); box-shadow:var(--shadow); }
+.estimator-heading h2 { margin:0 0 10px; font-size:32px; }
+.estimator-heading p { margin:0 0 24px; }
+.estimator-form { display:grid; grid-template-columns:1fr 1fr; gap:18px 15px; }
+.estimator-form .field { min-width:0; }
+.estimator-form .button { grid-column:1/-1; width:100%; justify-content:space-between; }
+.estimator-form select { min-height:48px; padding:10px; color:var(--ink); background:#fbfaf7; border:1px solid #ded9ce; border-radius:3px; font-size:12px; }
+.estimate-result { margin-top:22px; padding:20px 22px; background:#edf0ec; border-left:4px solid #7a8b72; color:var(--ink); }
+.estimate-result__label { color:#687762; font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+.estimate-result strong { display:block; margin:7px 0; font-family:var(--font-display); font-size:31px; letter-spacing:-.04em; }
+.estimate-result p { margin:6px 0 0; color:#637078; font-size:12px; line-height:1.7; }
+.estimator-side { position:sticky; top:120px; }
+.estimator-side .card-link { margin-top:18px; padding:18px; background:#eeeae2; }
+.quote-form-preview fieldset { min-width:0; margin:0; padding:0; border:0; }
+.quote-form-preview fieldset:disabled { opacity:1; }
+.quote-form-preview fieldset:disabled input, .quote-form-preview fieldset:disabled select, .quote-form-preview fieldset:disabled textarea { color:#7d878b; background:#efeee9; cursor:not-allowed; opacity:1; }
+.quote-form-preview fieldset:disabled button { opacity:.55; cursor:not-allowed; }
+.quote-form-preview input:disabled, .quote-form-preview select:disabled, .quote-form-preview textarea:disabled { color:#7d878b; background:#efeee9; }
+.checklist { list-style:none; padding:0 !important; }
+.checklist li { position:relative; padding:9px 10px 9px 32px; border-bottom:1px solid var(--line); }
+.checklist li::before { content:"✓"; position:absolute; left:5px; top:9px; color:var(--accent-deep); font-weight:900; }
+.footer__small { color:#8fa0a6 !important; font-size:10px !important; line-height:1.6 !important; }
+@media (max-width: 1100px) {
+  .header__inner { height:auto; min-height:78px; gap:15px; }
+  .nav { gap:8px; font-size:10px; }
+  .nav__cta { padding:9px 10px; }
+}
+@media (max-width: 900px) {
+  .nav { flex-wrap:wrap; justify-content:flex-end; }
+  .service-grid--three { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .estimator-layout { grid-template-columns:1fr; }
+  .estimator-side { position:static; }
+}
+@media (max-width: 720px) {
+  .concept-banner__inner { min-height:105px; padding:13px 0 14px; gap:4px; }
+  .concept-banner__inner strong { font-size:20px; }
+  .concept-banner__inner > span:last-child { max-width:340px; font-size:11px; }
+  .header__inner { height:70px; }
+  .nav { flex-wrap:nowrap; }
+  .service-grid--three { grid-template-columns:1fr; }
+  .concept-price-note { flex-direction:column; gap:5px; }
+  .estimator-card { padding:22px 17px; }
+  .estimator-form { grid-template-columns:1fr; }
+  .estimator-form .button { grid-column:auto; }
+  .estimator-heading h2 { font-size:27px; }
+}
