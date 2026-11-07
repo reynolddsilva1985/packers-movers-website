@@ -12,12 +12,33 @@ document.addEventListener("DOMContentLoaded", () => {
       menuButton.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
       navigation.classList.toggle("is-open", !expanded);
     });
+    const closeNavigation = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation");
+      navigation.classList.remove("is-open");
+    };
+
     navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation");
-        navigation.classList.remove("is-open");
-      });
+      link.addEventListener("click", closeNavigation);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+        closeNavigation();
+        menuButton.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (menuButton.getAttribute("aria-expanded") === "true" &&
+          !navigation.contains(event.target) &&
+          !menuButton.contains(event.target)) {
+        closeNavigation();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 720) closeNavigation();
     });
   }
 
