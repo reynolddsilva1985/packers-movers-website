@@ -49,12 +49,12 @@ The website displays these as **concept-stage working targets only**. They are n
 
 | Move | Draft target range | Indicative crew / vehicle |
 |---|---:|---|
-| Room / student / part-load | £245–£375 | 1–2 movers, suitable van |
-| Studio / small flat | £350–£475 | 2 movers, medium or LWB van |
-| 1-bedroom home | £495–£625 | 2 movers, Luton |
-| 2-bedroom home | £695–£895 | 2–3 movers, Luton |
-| 3-bedroom home | £895–£1,175 | 3 movers, larger Luton or second vehicle |
-| 4-bedroom home | £1,250–£1,650 | 4 movers, 1–2 vans |
+| Room / student / part-load | £275–£395 | 1–2 movers, suitable van |
+| Studio / small flat | £395–£525 | 2 movers, medium or LWB van |
+| 1-bedroom home | £595–£725 | 2 movers, Luton |
+| 2-bedroom home | £795–£995 | 2–3 movers, Luton |
+| 3-bedroom home | £1,095–£1,395 | 3 movers, larger Luton or second vehicle |
+| 4-bedroom home | £1,495–£1,895 | 4 movers, 1–2 vans |
 | 5+ bedrooms | Survey | Crew, vehicles and duration determined from inventory |
 
 The price range is not determined by bedroom count alone. A heavily furnished 1-bed flat with a long stair carry can cost more than a lightly furnished 2-bed property with lift access.
@@ -63,10 +63,10 @@ The price range is not determined by bedroom count alone. A heavily furnished 1-
 
 | Service | Target | Minimum |
 |---|---:|---:|
-| 1 mover + van | £58/hour | 3 hours |
-| 2 movers + van | £78/hour | 3 hours |
-| 3 movers + van | £105/hour | 4 hours |
-| Additional mover | £28–£32/hour | By prior agreement |
+| 1 mover + van | £65/hour | 3 hours |
+| 2 movers + van | £90/hour | 3 hours |
+| 3 movers + van | £120/hour | 4 hours |
+| Additional mover | £30–£35/hour | By prior agreement |
 
 These hourly prices need a defined clock: whether it begins at arrival or depot departure, what travel is included, when waiting time starts and whether congestion/parking is added. State the van size and payload.
 
@@ -74,12 +74,12 @@ These hourly prices need a defined clock: whether it begins at arrival or depot 
 
 | Service | Target |
 |---|---:|
-| 2-person packing team | £55–£65/team-hour |
-| 1-bedroom packing labour guide | £180–£260 |
-| 2-bedroom packing labour guide | £280–£380 |
-| 3-bedroom packing labour guide | £390–£540 |
-| 4-bedroom packing labour guide | £550–£750 |
-| Fragile-only / kitchen pack | From £95 after assessment |
+| 2-person packing team | £65–£75/team-hour |
+| 1-bedroom packing labour guide | £210–£290 |
+| 2-bedroom packing labour guide | £325–£430 |
+| 3-bedroom packing labour guide | £450–£600 |
+| 4-bedroom packing labour guide | £625–£820 |
+| Fragile-only / kitchen pack | From £115 after assessment |
 
 Materials are charged separately in the draft model. Never imply a fixed package includes unlimited boxes, paper or bubble wrap.
 
@@ -184,7 +184,7 @@ These are deliberately simple scenarios showing why the business must not set pr
 | Materials / consumables | £10–£20 | £15–£25 | £20–£35 |
 | Allocated overhead | £40–£60 | £50–£75 | £60–£90 |
 | **Indicative direct + allocated cost** | **£425–£559** | **£640–£749** | **£802–£978** |
-| Proposed customer target | £495–£625 | £695–£895 | £895–£1,175 |
+| Proposed customer target | £595–£725 | £795–£995 | £1,095–£1,395 |
 
 The table demonstrates that the lower end of each selling range is only viable for a straightforward, efficient job. If the real crew duration or vehicle hire cost rises, the price must rise. Do not accept a loss-making job simply to advertise a low “from” price.
 
@@ -216,6 +216,8 @@ Before the first paid move, obtain broker advice and written cover suitable for 
 - Operator licensing rules for vehicle plated weight and any trailer/international work. Many 3.5-tonne vans are below the domestic threshold, but check the exact plated/unladen weight and journey type.
 
 Do not advertise “fully insured”, “trained specialists”, “same-day” or any accreditation unless evidenced and current.
+
+**Pricing viability adjustment:** early price targets were increased after modelling a new operator hiring vans per job and paying a proper crew. Lower figures in competitor ads may depend on owned vehicles, high utilisation, different service scope or different VAT treatment. Do not reduce a quote below fully loaded job cost simply to match a headline rate.
 
 ## 10. Sources reviewed
 
