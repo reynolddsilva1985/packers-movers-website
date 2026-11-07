@@ -44,19 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const base = {
-        part: [245, 375], studio: [350, 475], one: [495, 625],
-        two: [695, 895], three: [895, 1175], four: [1250, 1650]
+        part: [275, 395], studio: [395, 525], one: [595, 725],
+        two: [795, 995], three: [1095, 1395], four: [1495, 1895]
       };
       const distanceAdd = {
         local: [0, 0], near: [45, 65], mid: [100, 145], far: [210, 290]
       };
       const packAdd = {
-        part: { kit:[15,25], fragile:[70,110], full:[120,180] },
-        studio: { kit:[35,50], fragile:[95,145], full:[160,230] },
-        one: { kit:[35,50], fragile:[95,155], full:[180,260] },
-        two: { kit:[55,75], fragile:[125,190], full:[280,380] },
-        three: { kit:[75,105], fragile:[155,230], full:[390,540] },
-        four: { kit:[110,150], fragile:[190,280], full:[550,750] }
+        part: { kit:[15,25], fragile:[85,125], full:[145,210] },
+        studio: { kit:[35,50], fragile:[115,170], full:[190,260] },
+        one: { kit:[35,50], fragile:[115,170], full:[210,290] },
+        two: { kit:[55,75], fragile:[145,210], full:[325,430] },
+        three: { kit:[75,105], fragile:[175,255], full:[450,600] },
+        four: { kit:[110,150], fragile:[220,320], full:[625,820] }
       };
       let low = base[size][0], high = base[size][1];
       low += distanceAdd[distance][0]; high += distanceAdd[distance][1];
