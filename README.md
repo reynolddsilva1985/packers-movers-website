@@ -1,37 +1,58 @@
-# Movers4Less website
+# Movers4Less concept website
 
-A premium, responsive, multi-page website for Movers4Less, focused on moving enquiries in London and surrounding areas.
+A responsive, multi-page website exploring a more affordable and transparent removals service for London and nearby areas.
+
+## Current status
+
+- The expanded concept website is on the GitHub `main` branch.
+- The public website is available at https://www.movers4less.co.uk/.
+- The site is a business concept, not an operating removals company.
+- Bookings, customer enquiries and payments are not open.
 
 ## Customer-facing pages
 
-- `index.html` — homepage and service overview
-- `services.html` — residential moves, office relocations, packing and item transport
-- `areas.html` — London-focused service-area explanation
-- `how-it-works.html` — enquiry-to-booking process
-- `about.html` — brand positioning and principles
-- `faqs.html` — customer questions
-- `quote.html` — disabled quotation-form preview
-- `privacy.html` — current privacy information and launch requirements
-- `404.html` — not-found page
+- `index.html` — homepage and business proposition
+- `services.html` — overview of services being explored
+- `home-removals.html` — whole-home moves
+- `small-moves.html` — smaller moves and man-and-van
+- `packing.html` — packing labour and materials
+- `fragile-items.html` — fragile, bulky and specialist items
+- `office-moves.html` — small office relocations
+- `pricing.html` — concept-stage price guide
+- `estimate.html` — browser-only illustrative cost estimator
+- `guides.html` — moving advice and planning resources
+- `moving-checklist.html` — moving checklist
+- `packing-guide.html` — packing guide
+- `declutter-guide.html` — reuse and decluttering guide
+- `areas.html` — proposed coverage
+- `how-it-works.html` — proposed future customer journey
+- `about.html` — the Movers4Less idea
+- `faqs.html` — frequently asked questions
+- `quote.html` — disabled enquiry-form preview
+- `privacy.html` — current privacy position
+- `404.html` — branded not-found page
 
 ## Supporting files
 
-- `styles.css` — shared responsive styling
-- `script.js` — mobile navigation and date handling
+- `styles.css` and `script.js` — shared design, responsive navigation and browser-side behaviour
 - `favicon.svg` — brand icon
 - `robots.txt` and `sitemap.xml` — search-engine discovery
-- `BUSINESS-PLAN.md` — proposed business blueprint for owner review
-- `LAUNCH-CHECKLIST.md` — approvals and launch gates
-- `CNAME` — existing custom domain; preserved unchanged
+- `BUSINESS-PLAN.md` — business concept and phased operating approach
+- `PRICE-BOOK.md` — internal market research, draft pricing, labour, crew, vehicle and equipment assumptions
+- `LAUNCH-CHECKLIST.md` — checks and decisions required before taking customers
+- `CNAME` — existing custom domain file, preserved
 
-## Enquiry form status
+## Website behaviour and safety
 
-The quote form is deliberately disabled in this review build. It does not transmit or store personal information. GitHub Pages is a static hosting service and does not provide a server-side form handler. A reliable form endpoint or service must be selected, approved, configured and tested before the form is enabled. A destination email address is not required to review the website itself.
+- The large, centred banner explains that bookings are not open.
+- The enquiry page is visible, but its complete form fieldset and submit button are disabled. It cannot collect or transmit information.
+- The cost estimator runs in the visitor's browser using anonymous selections. It does not request contact details or send the selections to a server.
+- Prices are planning estimates only, not fixed offers or guaranteed quotations. VAT treatment and the final operating model have not been approved.
+- The site does not claim to have staff, vehicles, insurance, accreditations, customer reviews or booking capacity.
+- No analytics or advertising trackers have been added.
 
-## Privacy and third parties
+## Before accepting the first customer
 
-The site code does not add analytics, advertising pixels or non-essential tracking cookies. Fonts use local system font stacks rather than third-party font requests. The final privacy notice still needs the actual controller identity, contact details, hosting/form processor details, purposes, lawful basis, retention and rights information before real enquiries are collected.
+The business owner must decide the legal structure and trading identity, confirm services and service area, validate prices against real supplier and operating costs, arrange appropriate insurance, establish safe working procedures, confirm worker/payroll arrangements, prepare customer terms and complaints handling, and set up a monitored mailbox plus a secure enquiry service. The privacy information must be completed before any personal information is collected.
 
-## Review and publishing
-
-All work is in the `website-redesign` branch and draft pull request. The production `main` branch has not been updated. The existing custom domain file has not been changed. Merge only after the owner has reviewed the site and launch requirements have been completed.
+The site should remain a concept website until those decisions and arrangements are in place.
