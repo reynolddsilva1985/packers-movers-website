@@ -1,6 +1,9 @@
 name: Static site quality checks
 
 on:
+  push:
+    branches:
+      - maintenance/site-quality-gates
   pull_request:
     branches:
       - main
