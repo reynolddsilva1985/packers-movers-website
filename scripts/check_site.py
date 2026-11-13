@@ -39,6 +39,10 @@ class PageParser(HTMLParser):
         self.title_parts: list[str] = []
         self.in_title = False
         self.has_viewport = False
+        self.has_description = False
+        self.canonical_href = ""
+        self.has_og_title = False
+        self.has_og_description = False
         self.has_main = False
         self.has_skip_link = False
         self.has_concept_banner = False
@@ -56,12 +60,19 @@ class PageParser(HTMLParser):
             self.lang = attrs.get("lang", "") or ""
         if tag == "title":
             self.in_title = True
-        if tag == "meta" and (attrs.get("name", "").lower() == "viewport"):
-            self.has_viewport = True
+        if tag == "meta":
+            name = (attrs.get("name", "") or "").lower()
+            prop = (attrs.get("property", "") or "").lower()
+            if name == "viewport":
+                self.has_viewport = True
+            elif name == "description" and (attrs.get("content", "") or "").strip():
+                self.has_description = True
+            if prop == "og:title" and (attrs.get("content", "") or "").strip():
+                self.has_og_title = True
+            elif prop == "og:description" and (attrs.get("content", "") or "").strip():
+                self.has_og_description = True
         if tag == "main":
             self.has_main = True
-        if tag == "a" and attrs.get("href", "").strip() == "#main":
-            self.has_skip_link = True
         if "concept-banner" in (attrs.get("class", "") or "").split():
             self.has_concept_banner = True
 
@@ -71,18 +82,33 @@ class PageParser(HTMLParser):
 
         rel = set((attrs.get("rel", "") or "").lower().split())
         if tag == "a" and attrs.get("href"):
+            classes = set((attrs.get("class", "") or "").split())
             self.links.append((
                 attrs["href"],
                 attrs.get("target", "").lower(),
                 set((attrs.get("rel", "") or "").lower().split()),
             ))
-            if attrs.get("href", "").strip() == "#main":
+            if attrs.get("href", "").strip() == "#main" and "skip-link" in classes:
                 self.has_skip_link = True
 
-        if tag == "link" and "stylesheet" in rel and attrs.get("href"):
+        if tag == "link" and "canonical" in rel and attrs.get("href"):
+            self.canonical_href = attrs["href"]
+        if tag == "link" and rel.intersection(
+            {"stylesheet", "icon", "manifest", "preload", "apple-touch-icon", "mask-icon"}
+        ) and attrs.get("href"):
             self.assets.append(attrs["href"])
-        if tag == "script" and attrs.get("src"):
+        if tag in {"script", "img", "source", "iframe", "audio"} and attrs.get("src"):
             self.assets.append(attrs["src"])
+        if tag == "video":
+            if attrs.get("src"):
+                self.assets.append(attrs["src"])
+            if attrs.get("poster"):
+                self.assets.append(attrs["poster"])
+        if attrs.get("srcset"):
+            for candidate in attrs["srcset"].split(","):
+                source = candidate.strip().split()
+                if source:
+                    self.assets.append(source[0])
 
         if tag == "img" and "alt" not in attrs:
             self.images_without_alt.append(str(attrs))
@@ -162,6 +188,15 @@ def check_pages() -> dict[Path, PageParser]:
             error(f"{relative}: missing or empty <title>.")
         if not parser.has_viewport:
             error(f"{relative}: missing responsive viewport metadata.")
+        if path.name != "404.html":
+            if not parser.has_description:
+                error(f"{relative}: missing or empty meta description.")
+            if not parser.canonical_href:
+                error(f"{relative}: missing canonical URL.")
+            if not parser.has_og_title:
+                error(f"{relative}: missing or empty Open Graph title.")
+            if not parser.has_og_description:
+                error(f"{relative}: missing or empty Open Graph description.")
         if not parser.has_main:
             error(f"{relative}: missing <main> landmark.")
         if not parser.has_skip_link:
@@ -198,11 +233,25 @@ def check_pages() -> dict[Path, PageParser]:
                     error(f"{relative}: fragment #{fragment} does not exist in {href}.")
 
         for asset in parser.assets:
-            resolved, _ = resolve_local_path(path, asset)
+            try:
+                resolved, _ = resolve_local_path(path, asset)
+            except ValueError:
+                error(f"{relative}: malformed local resource URL: {asset}")
+                continue
             if resolved is None:
-                warn(f"{relative}: external stylesheet/script reference found: {asset}")
+                if urlsplit(asset).scheme.lower() not in {"data", "blob"}:
+                    warn(f"{relative}: external page asset requires review: {asset}")
             elif not resolved.exists():
-                error(f"{relative}: stylesheet/script file does not exist: {asset}")
+                error(f"{relative}: local page asset does not exist: {asset}")
+
+        if path.name != "404.html":
+            expected_host = (ROOT / "CNAME").read_text(encoding="utf-8").strip().lower()
+            canonical = urlsplit(parser.canonical_href)
+            expected_path = "/" if path.name == "index.html" else f"/{path.name}"
+            if canonical.scheme != "https" or (canonical.hostname or "").lower() != expected_host:
+                error(f"{relative}: canonical URL must use https and the configured CNAME host ({expected_host}).")
+            elif canonical.path != expected_path or canonical.query or canonical.fragment:
+                error(f"{relative}: canonical URL path should be {expected_path!r} without query or fragment.")
 
     return pages
 
@@ -230,15 +279,46 @@ def check_launch_safeguards(pages: dict[Path, PageParser]) -> None:
         else:
             print("PASS: current browser script contains no network-submission API.")
 
-        trackers = re.findall(
+        tracker_pattern = re.compile(
             r"google-analytics|googletagmanager|gtag\s*\(|facebook\.net|hotjar|clarity\.ms|mixpanel",
-            source,
             flags=re.IGNORECASE,
         )
-        if trackers:
-            error("script.js: analytics/advertising tracker pattern detected.")
+        tracked_files = [script, *sorted(ROOT.glob("*.html"))]
+        tracker_hits = [
+            str(path.relative_to(ROOT))
+            for path in tracked_files
+            if tracker_pattern.search(path.read_text(encoding="utf-8"))
+        ]
+        if tracker_hits:
+            error("Known analytics/advertising tracker pattern detected in: " + ", ".join(tracker_hits))
         else:
-            print("PASS: no known analytics/advertising tracker pattern in script.js.")
+            print("PASS: no recognised analytics/advertising tracker patterns in page HTML or script.js.")
+
+
+def check_css_resources() -> None:
+    """Check local url(...) references in the shared stylesheet."""
+    stylesheet = ROOT / "styles.css"
+    if not stylesheet.exists():
+        return
+    source = stylesheet.read_text(encoding="utf-8")
+    pattern = re.compile(r"""url\(\s*(?:"([^"]*)"|'([^']*)'|([^)]*))\s*\)""", re.IGNORECASE)
+    for match in pattern.finditer(source):
+        raw_url = next((value for value in match.groups() if value is not None), "").strip()
+        if not raw_url or raw_url.startswith("#"):
+            continue
+        try:
+            parsed = urlsplit(raw_url)
+        except ValueError:
+            error(f"styles.css: malformed url(...) value: {raw_url}")
+            continue
+        if parsed.scheme or parsed.netloc:
+            if parsed.scheme.lower() not in {"data", "blob"}:
+                warn(f"styles.css: external CSS asset requires review: {raw_url}")
+            continue
+        target = (stylesheet.parent / unquote(parsed.path)).resolve()
+        if not target.exists():
+            error(f"styles.css: local CSS asset does not exist: {raw_url}")
+    print("PASS: local CSS url(...) references checked.")
 
 
 def check_sitemap_and_robots() -> None:
@@ -250,11 +330,16 @@ def check_sitemap_and_robots() -> None:
             locs = [node.text or "" for node in tree.findall(".//sm:loc", namespace)]
             if not locs:
                 error("sitemap.xml: no <loc> entries found.")
+            if len(locs) != len(set(locs)):
+                error("sitemap.xml: duplicate URL entries found.")
+            expected_host = (ROOT / "CNAME").read_text(encoding="utf-8").strip().lower()
             for loc in locs:
                 parsed = urlsplit(loc)
-                if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-                    error(f"sitemap.xml: invalid absolute URL: {loc}")
+                if parsed.scheme != "https" or (parsed.hostname or "").lower() != expected_host:
+                    error(f"sitemap.xml: URL must use https and configured host {expected_host}: {loc}")
                     continue
+                if parsed.query or parsed.fragment:
+                    error(f"sitemap.xml: URL must not include a query or fragment: {loc}")
                 local = (ROOT / unquote(parsed.path.lstrip("/"))).resolve()
                 if parsed.path in {"", "/"}:
                     local = (ROOT / "index.html").resolve()
@@ -278,6 +363,7 @@ def check_sitemap_and_robots() -> None:
 def main() -> int:
     pages = check_pages()
     check_launch_safeguards(pages)
+    check_css_resources()
     check_sitemap_and_robots()
 
     print(f"\nChecked {len([p for p in ROOT.glob('*.html')])} HTML pages.")
