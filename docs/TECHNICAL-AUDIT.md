@@ -19,6 +19,8 @@ The strongest existing decisions are:
 
 The main weakness is not the choice of HTML, CSS and JavaScript. It is the maintenance process around them. Common navigation, banner and footer markup is repeated across many HTML files, and the shared stylesheet has accumulated later visual overrides. Without automated checks, a small edit can unintentionally break a page or make common elements inconsistent.
 
+A first quality-control layer has now been added on an isolated branch. It checks page metadata and canonical URLs, the actual skip-link class, local page/resource links, CSS `url(...)` references, image alternative-text attributes, duplicate IDs, sitemap host/path consistency, new-tab link safety and the current pre-launch safeguards.
+
 **Recommendation:** keep the public website static for now. Improve its quality controls before introducing a framework or a backend. Do not start taking enquiries until the business, data handling and operational launch checks are complete.
 
 ## 1. What was inspected
@@ -83,6 +85,8 @@ The shared script is small and focused. It handles:
 - footer year;
 - a local estimate calculation.
 
+The quality workflow also runs a JavaScript syntax check with Node. This catches parser errors but does not execute the script or prove that every interaction works in a browser.
+
 The current estimator uses a fixed set of form choices. Its displayed result is assembled with `innerHTML`; the values used today are constrained by the page's select options and fixed lookup tables, rather than free-form customer input. That is not an immediate exploit identified in this review, but changing the result rendering to DOM elements and `textContent` would be a more defensive pattern before introducing free-text fields or backend data.
 
 The script does not currently submit customer details to a server. That is consistent with the stated concept-stage privacy position.
@@ -101,11 +105,14 @@ One item to review later: the sitemap currently includes `quote.html`, although 
 The desired release process is:
 
 1. Edit a separate development branch.
-2. Run automatic checks for broken local links, missing pages, duplicate IDs, missing page metadata, images without alternative text, unsafe new-tab links, sitemap mistakes and the disabled enquiry-form safeguard.
-3. Generate a preview deployment for review.
-4. Check the preview on real phone, tablet and desktop browsers.
-5. Approve the release.
-6. Deploy the new version independently of the previous version, keeping rollback available.
+2. Run automatic checks for broken local links and assets, missing pages, duplicate IDs, missing page metadata, images without alternative text, unsafe new-tab links, CSS asset references, sitemap host/path mistakes and the disabled enquiry-form safeguard.
+3. Run a JavaScript syntax check without executing customer-facing behaviour.
+4. Generate a preview deployment for review.
+5. Check the preview on real phone, tablet and desktop browsers.
+6. Approve the release.
+7. Deploy the new version independently of the previous version, keeping rollback available.
+
+The current GitHub Actions workflow has read-only repository permission, pins the checkout action to the exact commit used by the successful run, and disables persistence of the GitHub token in the checkout directory. It has no deployment step, production secret or production environment.
 
 Cloudflare Pages supports Git-connected preview deployments for custom branches and pull requests, with preview releases separate from production. That makes it a strong future fit for this static site, provided the account/project configuration is verified and deliberately approved. Its Git integration also needs its production branch controls configured correctly. No Cloudflare project, DNS or hosting setting was changed during this review.
 
