@@ -18,7 +18,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 ERRORS: list[str] = []
 WARNINGS: list[str] = []
 
