@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - maintenance/site-quality-gates
+      - main
   pull_request:
     branches:
       - main
@@ -29,4 +30,4 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check script.js
       - name: Check static site
-        run: python3 scripts/check_site.py
+        run: python3 .github/maintenance/check_site.py
